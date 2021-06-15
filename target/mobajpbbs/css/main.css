@@ -1,0 +1,67 @@
+@charset "UTF-8";
+ body{
+ 	max-width:1100px;
+ 	margin:0 auto;
+ 	padding:0 4%;
+ 	font-size:14px;
+ }
+ a{
+ 	text-decoration: none;
+ }
+textarea{
+	font-size:14px;
+}
+ .red{
+ 	color:red;
+ }
+ .blue{
+ 	color:blue;
+ }
+ a:link,a:visited{
+ 	color:#000000;
+ }
+ .button {
+  display       : inline-block;
+  border-radius : 3px;          /* 角丸       */
+  font-size     : 16px;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding:1px 3px;   /* 余白       */
+  background    : #666666;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 1px solid #999999;    /* 枠の指定 */
+}
+.button:hover {
+  color         : #666666;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+.button a{
+	color         : #ffffff;
+}
+.button:hover a{
+	color         : #666666;
+}
+ .reverse-button {
+  display       : inline-block;
+  border-radius : 3px;          /* 角丸       */
+  font-size     : 16px;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding:1px 3px;   /* 余白       */
+  color         : #666666;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 1px solid #999999;    /* 枠の指定 */
+}
+.reverse-button:hover {
+
+  background    : #666666;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+}
+.reverse-button a{
+	color         : #666666;
+}
+.reverse-button:hover a{
+	color         : #ffffff;
+}

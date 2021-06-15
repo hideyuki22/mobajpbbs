@@ -1,0 +1,28 @@
+@charset "UTF-8";
+article{
+	margin:0 auto;
+}
+.teamtable{
+	margin:0 auto;
+}
+.teamtable img{
+	width:96px;
+  	height:96px;
+    border-radius:50%;
+}
+table tr td:nth-child(1){
+	width:105px;
+	text-align: right;
+}
+table tr td:nth-child(2){
+	width:280px;
+}
+table tr td:nth-child(3){
+	width:150px;
+}
+table tr td:nth-child(2){
+	width:280px;
+}
+table tr:nth-child(4) td:nth-child(2){
+	text-align:right;
+}

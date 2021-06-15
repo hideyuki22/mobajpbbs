@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+h1 {
+	font-size: 48px;
+	font-weight: bold;
+	font-style: italic;
+	font-family: "Arial", "ゴシック体";
+}
+
+header a {
+	text-decoration: none;
+}
+
+.main-nav {
+	display: flex;
+	margin-top: 64px;
+	list-style: none;
+	font-size:16px;
+	text-align:left;
+}
+
+.main-nav li {
+	margin-left: 5px;
+	padding: 1px 3px;
+}
+
+.dropmenu {
+	width: 104px;
+	margin-left: 10px;
+}
+
+.dropmenu:hover {
+	background-color: #ffffff;
+	color: #666666;
+}
+
+.sub-nav {
+	list-style: none;
+	background-color: #666666;
+	color: #ffffff;
+	text-align: center;
+	border-radius: 3px;
+	padding-left: 0px;
+	padding-right: 5px;
+	width: 162px;
+	margin-top: 3px;
+	margin-left: 0;
+	border: 1px solid #999999;
+	display:none;
+}
+
+.sub-nav a {
+	color: #ffffff;
+}
+
+.sub-nav li {
+	margin-top: 2px;
+
+}
+
+.sub-nav li:hover {
+	margin-top: 2px;
+	color: #999999;
+	background: #ffffff;
+}
+
+.sub-nav li:hover a {
+	color: #999999; /* 背景色     */
+}
+
+.page-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+header {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 4%;
+}
+header input{
+	border:none;
+	outline: none;
+}

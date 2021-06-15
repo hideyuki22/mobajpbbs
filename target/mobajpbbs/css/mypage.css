@@ -1,0 +1,89 @@
+@charset "UTF-8";
+main{
+	display:flex;
+	justify-content:center;
+	flex-wrap:wrap;
+}
+article{
+	min-width:600px;
+	border-right:solid 2px #999999;
+	margin:0 auto;
+}
+@media(max-width:1200px){
+	article{
+		border-right-width:0;
+		border-bottom:solid 2px #999999;
+		padding-bottom:5px;
+		margin-bottom:5px;
+		width:100%;
+	}
+}
+aside{
+	margin:0 auto;
+}
+.mypage{
+	width:600px;
+	margin:0 auto;
+}
+table{
+	margin:auto;
+	font-size:14px;
+}
+.imagetable{
+	width:450px;
+	color:red;
+}
+.imagetable tr:nth-child(1) td:nth-child(1){
+	height:96px;
+	width:96px;
+}
+.imagetable tr:nth-child(1){
+	height:68px;
+}
+.imagetable tr td{
+	vertical-align:bottom;
+}
+.imagetable img{
+	height:96px;
+	width:96px;
+	border-radius:50%;
+}
+.imagetable tr td:nth-child(1){
+	color:red;
+	width:200px;
+}
+.changetable tr td:nth-child(1){
+	text-align:right;
+}
+.changetable tr td:nth-child(4){
+	color:red;
+	width:200px;
+}
+.changetable tr td{
+	vertical-align:bottom;
+	height:40px;
+}
+textarea{
+	font-size:14px;
+}
+.item{
+ 	width:480px;
+ 	margin:0 auto;
+}
+.page-list{
+ 	display:flex;
+ 	justify-content:center;
+ 	list-style:none;
+
+ }
+
+.page-list li{
+  	margin:0 24px;
+  	width:40px;
+  }
+ .post table{
+ 	margin:auto;
+}
+.post table tr{
+	height:24px;
+}

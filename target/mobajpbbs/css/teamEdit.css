@@ -1,0 +1,66 @@
+@charset "UTF-8";
+main{
+	display:flex;
+	margin:0 auto;
+	justify-content:space-around;
+	flex-wrap:wrap;
+}
+article{
+	min-width:40%;
+	border-right:solid 2px #999999;
+	margin:0 auto;
+
+}
+@media(max-width:907px){
+	article{
+		border-right-width:0;
+		border-bottom:solid 2px #999999;
+		padding-bottom:5px;
+		margin-bottom:5px;
+		width:100%;
+	}
+}
+aside{
+	margin:0 auto;
+}
+
+
+.teamimage img{
+	width:96px;
+  	height:96px;
+    border-radius:50%;
+}
+ .team{
+	margin:0 auto;
+ 	font-size:14px;
+ 	width:307px;
+ }
+ .team div{
+ 	margin-top:5px;
+ 	min-width:307px;
+ }
+ h3{
+ 	margin:0 auto;
+ 	text-align:center
+ }
+ .menberlist{
+ 	margin:0 auto;
+ 	width:490px;
+ }
+.menber{
+	margin:0 auto;
+	display:flex;
+}
+.menber .red{
+	margin-top:37px;
+	margin-left:5px;
+	width:200px;
+}
+.menber div{
+	margin-top:5px;
+}
+.menber img{
+	width:64px;
+  	height:64px;
+    border-radius:50%;
+}

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+table{
+	margin:auto;
+	font-size:14px;
+}
+table tr td:nth-child(3){
+	color:red;
+	font-size:14px;
+	text-align:center;
+	min-width:235px;
+}
+
+td{
+	min-width:150px;
+	text-align:right;
+}
