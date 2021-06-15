@@ -21,7 +21,9 @@ import core.ApplicationCore;
 		)
 public class IndexSurvlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	   String url = System.getenv("DATABASE_URL");
+	   String url = "jdbc:postgresql://" + System.getenv("DATABASE_HOST") + ":" +
+			   System.getenv("DATABASE_PORT") +"/" + System.getenv("DATABASE_NAME");
+
 	   String user = System.getenv("DATABASE_USER");
 	   String pass = System.getenv("DATABASE_PASSWORD");
 	   String[] connInfo = new String[]{
@@ -46,7 +48,7 @@ public class IndexSurvlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println(url);
 		request.setCharacterEncoding("UTF-8");
 		new ApplicationCore(request, response, this.connInfo, this.getServletContext());
 	}
