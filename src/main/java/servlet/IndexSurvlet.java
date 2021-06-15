@@ -24,24 +24,24 @@ public class IndexSurvlet extends HttpServlet {
 	   String url = System.getenv("DATABASE_URL");
 	   String user = System.getenv("DATABASE_USER");
 	   String pass = System.getenv("DATABASE_PASSWORD");
-	 /*  String[] connInfo = new String[]{
+	   String[] connInfo = new String[]{
 				"org.postgresql.Driver",	//ドライバー
 				url,//データベース
 				user,//ユーザー
 				pass//パスワード
-		};*/
+		};
 	/*String[] connInfo = new String[]{
 			"org.h2.Driver",	//ドライバー
 			"jdbc:h2:tcp://localhost/~/mobajpbbs",//データベース
 			"sa",//ユーザー
 			"ghui56"//パスワード
 	};*/
-	String[] connInfo = new String[]{
+	/*String[] connInfo = new String[]{
 			"org.h2.Driver",	//ドライバー
 			"jdbc:h2:tcp://localhost/~/test",//データベース
 			"sa",//ユーザー
 			""//パスワード
-	};
+	};*/
 
 
 	protected void doGet(HttpServletRequest request,
