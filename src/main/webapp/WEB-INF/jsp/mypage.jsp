@@ -106,9 +106,7 @@
 						</tr>
 						<tr>
 
-							<td colspan="2"><textarea id="text" name="text" rows="10" cols="40" wrap="hard"><
-								c:out value="${user.text}" />
-							</textarea></td>
+							<td colspan="2"><textarea id="text" name="text" rows="10" cols="40" wrap="hard"><c:out value="${user.text}" /></textarea></td>
 							<td>
 								<input type="submit" formaction="<c:out value="${url}" />/account/update/item/text" id="textchange" name="textchange" value="変更する">
 							</td>

@@ -221,13 +221,13 @@ public class PostDAO extends DAOBase {
 	}
 
 	public boolean InsertPost(Map<String, String> post) {
-		//�l�̎擾
+
 		if (post.containsKey("userid") && post.containsKey("categoryid") && post.containsKey("title")
 				&& post.containsKey("text")) {
-			String userid = (String) post.get("userid");
-			String categoryid = (String) post.get("categoryid");
-			String title = (String) post.get("title");
-			String text = (String) post.get("text");
+			String userid = post.get("userid");
+			int categoryid = Integer.valueOf(post.get("categoryid"));
+			String title = post.get("title");
+			String text = post.get("text");
 			//sql
 			String sql = "INSERT INTO POST(USER_ID,CATEGORY_ID,TITLE,TEXT) VALUES(?, ?, ?, ?)";
 			boolean result = false;
@@ -239,7 +239,7 @@ public class PostDAO extends DAOBase {
 					con.setAutoCommit(false);
 					PreparedStatement pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, userid);
-					pstmt.setString(2, categoryid);
+					pstmt.setInt(2, categoryid);
 					pstmt.setString(3, title);
 					pstmt.setString(4, text);
 					int r = pstmt.executeUpdate();
