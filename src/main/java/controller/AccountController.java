@@ -391,6 +391,7 @@ public class AccountController extends ControllerBase {
 		}
 
 		String loginid = this.request.getParameter("loginid");
+		System.out.println("loginid:"+loginid);
 		UserDAO userDAO = new UserDAO();
 		String data;
 		if (userDAO.isLoginid(loginid)) {
