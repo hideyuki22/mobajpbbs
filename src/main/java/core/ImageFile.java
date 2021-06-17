@@ -19,7 +19,7 @@ public class ImageFile {
 	public static boolean CheckExtension(String filename) {
 		String extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
 		//許可する拡張子リスト
-		List<String> ExtensionList = Arrays.asList(".JPG", ".JEPG", ".PNG", ".GIF", ".BMP", ".TIFF");
+		List<String> ExtensionList = Arrays.asList(".JPG", ".JPEG", ".PNG", ".GIF", ".BMP", ".TIFF");
 		return ExtensionList.contains(extension);
 	}
 
