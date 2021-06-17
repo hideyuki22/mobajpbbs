@@ -105,11 +105,11 @@ public class PostDAO extends DAOBase {
 	}
 
 	public ArrayList<Post> FetchAllPost() {
-		return this.FetchAllPost(0, 5);
+		return this.FetchAllPost(0, 12);
 	}
 
 	public ArrayList<Post> FetchAllPost(int offset) {
-		return this.FetchAllPost(offset, 5);
+		return this.FetchAllPost(offset, 12);
 	}
 
 	public ArrayList<Post> FetchAllPost(int offset, int limit) {
