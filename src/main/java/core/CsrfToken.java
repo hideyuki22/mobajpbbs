@@ -72,7 +72,6 @@ public class CsrfToken {
 			//トークンが存在すればそのトークンを削除してtrueを返す
 			if (key != -1) {
 				this.tokens.get(tokenName).remove(key);
-				System.out.println(String.valueOf(this.tokens.get(tokenName).size())+ "個");
 				this.session.setAttribute("tokens", this.tokens);
 				return true;
 			}

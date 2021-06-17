@@ -147,7 +147,7 @@ public class PostController extends ControllerBase {
 			errors.put("submit", "ログイン状態が不正です。");
 		}
 
-		String userid = String.valueOf(loginUser.getId());
+		String userid = Integer.toString(loginUser.getId());
 		String categoryid = this.request.getParameter("category");
 		String title = this.request.getParameter("title");
 		String text = this.request.getParameter("text");
@@ -162,7 +162,7 @@ public class PostController extends ControllerBase {
 
 		//カテゴリーチェック
 		CategoryDAO caDAO = new CategoryDAO();
-		Category category = caDAO.getCategoryid(categoryid);
+		Category category = caDAO.getCategoryid(Integer.valueOf(categoryid));
 		if (category == null) {
 			errors.put("category", "カテゴリーの値が不正です。");
 		} else if (loginUser.getTeamid() == 0 && category.isTeamFlag()) {

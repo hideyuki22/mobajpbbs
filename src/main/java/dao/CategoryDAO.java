@@ -11,7 +11,7 @@ import model.Category;
 
 public class CategoryDAO extends DAOBase {
 
-	public boolean isCategoryid(String categoryid) {
+	public boolean isCategoryid(int categoryid) {
 		//SQL
 		String sql = "SELECT * FROM CATEGORY WHERE ID = ?";
 
@@ -19,7 +19,7 @@ public class CategoryDAO extends DAOBase {
 			Connection con = this.getCon();
 			try {
 				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, categoryid);
+				pstmt.setInt(1, categoryid);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					return true;
@@ -36,7 +36,7 @@ public class CategoryDAO extends DAOBase {
 		return false;
 	}
 
-	public Category getCategoryid(String categoryid) {
+	public Category getCategoryid(int categoryid) {
 		//SQL
 		String sql = "SELECT * FROM CATEGORY WHERE ID = ?";
 
@@ -44,7 +44,7 @@ public class CategoryDAO extends DAOBase {
 			Connection con = this.getCon();
 			try {
 				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, categoryid);
+				pstmt.setInt(1, categoryid);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					Category category = new Category(rs.getInt("id"), rs.getString("name"), rs.getBoolean("team_flag"));

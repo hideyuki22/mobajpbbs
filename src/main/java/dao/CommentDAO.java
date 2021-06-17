@@ -12,7 +12,7 @@ import model.Comment;
 public class CommentDAO extends DAOBase {
 
 	String SelectColumn = " ACCOUNT.*,COMMENT.ID AS COMMENT_ID,COMMENT.TEXT AS COMMENT_TEXT,"
-			+ "COMMENT.DATA AS COMMENT_DATA,COMMENT.TIME AS COMMENT_TIME,"
+			+ "COMMENT.DATE AS COMMENT_DATE,COMMENT.TIME AS COMMENT_TIME,"
 			+ "TEAM.NAME AS TEAM_NAME ";
 	public ArrayList<Comment> FetchAllComment(int postid) {
 		//sql

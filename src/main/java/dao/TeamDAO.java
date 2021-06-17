@@ -107,10 +107,10 @@ public class TeamDAO extends DAOBase {
 		//マップに値があるか確認
 		if (teamMap.containsKey("userid") && teamMap.containsKey("name") && teamMap.containsKey("text")
 				&& teamMap.containsKey("image")) {
-			String userid = (String) teamMap.get("userid");
-			String name = (String) teamMap.get("name");
-			String text = (String) teamMap.get("text");
-			String image = (String) teamMap.get("image");
+			int userid = Integer.valueOf(teamMap.get("userid"));
+			String name = teamMap.get("name");
+			String text = teamMap.get("text");
+			String image = teamMap.get("image");
 			//名前が空白なら失敗
 			if (this.isName(name)) {
 				return false;
@@ -125,12 +125,12 @@ public class TeamDAO extends DAOBase {
 				try {
 					con.setAutoCommit(false);
 					PreparedStatement pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, userid);
+					pstmt.setInt(1, userid);
 					pstmt.setString(2, name);
 					pstmt.setString(3, text);
 					pstmt.setString(4, image);
 					pstmt.setString(5, name);
-					pstmt.setString(6, userid);
+					pstmt.setInt(6, userid);
 					int r = pstmt.executeUpdate();
 					if (r != 0) {
 						result = true;

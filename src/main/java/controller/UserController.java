@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import core.ApplicationCore;
@@ -67,8 +68,8 @@ public class UserController extends ControllerBase {
 
 		this.forward("/WEB-INF/jsp/profile.jsp");
 	}
-	//管理画面用(未完成)
-	/*public void UpdateAction() throws Exception {
+
+	public void UpdateAction() throws Exception {
 		//ログインしてなかったらトップページへ
 		if (!this.login.checkLogin()) {
 			this.response.sendRedirect(this.getBaseUrl());
@@ -140,5 +141,5 @@ public class UserController extends ControllerBase {
 		String userManagementToken = this.csrfToken.genarateToken("userManagement");
 		this.request.setAttribute("userManagementToken", userManagementToken);
 		this.forward("/WEB-INF/jsp/management.jsp");
-	}*/
+	}
 }

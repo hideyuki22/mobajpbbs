@@ -403,7 +403,7 @@ public class AccountController extends ControllerBase {
 		this.request.setAttribute("data", data);
 		this.forward("/WEB-INF/jsp/ajax.jsp");
 	}
-	//Ajax用表示名検索
+	//Ajax用ログインID検索
 	public void NameAction() throws Exception {
 		//POST以外だったらトップページへ
 		if (!this.request.getMethod().equals("POST")) {
