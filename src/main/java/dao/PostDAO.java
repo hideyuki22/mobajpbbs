@@ -224,7 +224,7 @@ public class PostDAO extends DAOBase {
 
 		if (post.containsKey("userid") && post.containsKey("categoryid") && post.containsKey("title")
 				&& post.containsKey("text")) {
-			String userid = post.get("userid");
+			int userid = Integer.valueOf(post.get("userid"));
 			int categoryid = Integer.valueOf(post.get("categoryid"));
 			String title = post.get("title");
 			String text = post.get("text");
@@ -238,7 +238,7 @@ public class PostDAO extends DAOBase {
 				try {
 					con.setAutoCommit(false);
 					PreparedStatement pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, userid);
+					pstmt.setInt(1, userid);
 					pstmt.setInt(2, categoryid);
 					pstmt.setString(3, title);
 					pstmt.setString(4, text);
