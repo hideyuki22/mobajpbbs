@@ -52,7 +52,6 @@ public class CsrfToken {
 		}
 		//リストの最後に登録
 		tokenList.add(buf.toString());
-		System.out.println("トークンサイズ:"+tokenList.size());
 		this.tokens.put(tokenName, tokenList);
 		//セッションにマップを戻す
 		this.session.setAttribute("tokens", this.tokens);

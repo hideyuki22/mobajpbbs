@@ -392,16 +392,6 @@ public class AccountController extends ControllerBase {
 
 		String loginid = this.request.getParameter("loginid");
 
-		Map<String,String[]> parameterMap = request.getParameterMap();
-
-        for(String key : parameterMap.keySet()) {
-        	System.out.println("Key:"+key);
-            String[] vals = parameterMap.get(key);
-            for(String value : vals) {
-            	System.out.println("value:"+value);
-            }
-
-        }
 		UserDAO userDAO = new UserDAO();
 		String data;
 		if (userDAO.isLoginid(loginid)) {
