@@ -42,7 +42,7 @@ window.addEventListener('load',function(){
 	upload.onchange = function(){
 		let file = upload.files[0];
 		//許可する拡張子
-		let extensionList = [".JPG", ".JEPG", ".PNG",".GIF",".BMP",".TIFF"];
+		let extensionList = [".JPG", ".JPEG", ".PNG",".GIF",".BMP",".TIFF"];
 		if(file === undefined){
 			msgimg.innerHTML = "";
 		}else{

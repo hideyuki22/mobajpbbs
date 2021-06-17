@@ -14,10 +14,9 @@ import core.ApplicationCore;
 @WebServlet({"", "/index/*", "/account/*", "/post/*", "/user/*", "/edit/*", "/team/*"})
 
 @MultipartConfig(
-		location = "D:\\TEMP",//保存�?��?
 		maxFileSize = 1024*1024*5,
 		maxRequestSize = 1024*1024*5,
-		fileSizeThreshold = 1024*1024*5 //5mb
+		fileSizeThreshold = 1024*1024*10 //10MB
 		)
 public class IndexSurvlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
