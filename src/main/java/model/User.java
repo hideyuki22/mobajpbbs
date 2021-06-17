@@ -38,8 +38,8 @@ public class User implements Serializable {
 
 	public User(ResultSet rs) throws SQLException {
 		this.id = rs.getInt("id");
-		this.loginid = rs.getString("account.login_id");
-		this.name = rs.getString("account.name");
+		this.loginid = rs.getString("login_id");
+		this.name = rs.getString("name");
 		this.text = rs.getString("account.text");
 		this.roll = rs.getInt("account.roll_id");
 		this.rank = rs.getInt("account.rank_id");
