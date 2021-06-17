@@ -12,11 +12,11 @@ window.addEventListener('load',function(){
 			msgid.innerHTML = "ログインIDは半角英数字_6文字以上20文字以内です。";
 		}else{
 			//ID検索6
-			let formData = new FormData();
-			formData.append("loginid",loginid.value);
+
 			let req = new Request(url+"/account/loginid",{
 				method : "POST",
-				body:formData
+				body:"loginid="+loginid.value,
+				headers: new Headers({'Content-type' : 'application/x-www-form-urlencoded' }),
 			});
 
 			fetch(req).then(function(response){
@@ -82,11 +82,10 @@ window.addEventListener('load',function(){
 			msgname.innerHTML = "表示名は2文字以上20文字以内です。";
 		}else{
 			//ID検索6
-			let formData = new FormData();
-			formData.append("name",name.value);
 			let req = new Request(url+"/account/name",{
 				method : "POST",
-				body:formData
+				body:"name="+name.values,
+				headers: new Headers({'Content-type' : 'application/x-www-form-urlencoded' }),
 			});
 
 			fetch(req).then(function(response){
