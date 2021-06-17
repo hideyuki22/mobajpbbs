@@ -37,6 +37,7 @@ public abstract class ControllerBase {
 	public void forward(String url) throws Exception {
 		//urlにフォワード
 		this.dispatcher = this.request.getRequestDispatcher(url);
+		System.out.println("フォワード:"+url);
 		this.dispatcher.forward(this.request, this.response);
 	}
 
