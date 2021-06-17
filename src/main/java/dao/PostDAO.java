@@ -238,8 +238,11 @@ public class PostDAO extends DAOBase {
 				try {
 					con.setAutoCommit(false);
 					PreparedStatement pstmt = con.prepareStatement(sql);
+					System.out.println("test1");
 					pstmt.setInt(1, userid);
+					System.out.println("test2");
 					pstmt.setInt(2, categoryid);
+					System.out.println("test3");
 					pstmt.setString(3, title);
 					pstmt.setString(4, text);
 					int r = pstmt.executeUpdate();
@@ -248,8 +251,8 @@ public class PostDAO extends DAOBase {
 					}
 
 					con.commit();
-				} catch (SQLException var21) {
-					var21.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
 					con.rollback();
 				} finally {
 					if (con != null) {
