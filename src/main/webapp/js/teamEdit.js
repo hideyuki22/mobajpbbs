@@ -59,11 +59,11 @@ window.addEventListener('load',function(){
 				msgname.innerHTML = "チーム名は3文字以上20文字以内です。";
 			}else{
 				//ID検索6
-				let formData = new FormData();
-				formData.append("name",name.value);
+
 				let req = new Request(url+"/team/name",{
 					method : "POST",
-					body:formData
+					body:"name="+name.value,
+					headers: new Headers({'Content-type' : 'application/x-www-form-urlencoded' }),
 				});
 
 				fetch(req).then(function(response){

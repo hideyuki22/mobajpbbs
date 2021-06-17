@@ -391,6 +391,7 @@ public class AccountController extends ControllerBase {
 		}
 
 		String loginid = this.request.getParameter("loginid");
+
 		Map<String,String[]> parameterMap = request.getParameterMap();
 
         for(String key : parameterMap.keySet()) {
