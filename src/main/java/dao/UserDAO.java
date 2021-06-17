@@ -50,6 +50,7 @@ public class UserDAO extends DAOBase {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, loginid);
 				ResultSet rs = pstmt.executeQuery();
+				System.out.println("rs.next():"+rs.next());
 				if (rs.next()) {
 					return true;
 				}

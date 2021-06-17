@@ -22,7 +22,7 @@ import core.ApplicationCore;
 public class IndexSurvlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	   String url = "jdbc:postgresql://" + System.getenv("DATABASE_HOST") + ":" +
+	   /*String url = "jdbc:postgresql://" + System.getenv("DATABASE_HOST") + ":" +
 			   System.getenv("DATABASE_PORT") +"/" + System.getenv("DATABASE_NAME");
 
 	   String user = System.getenv("DATABASE_USER");
@@ -32,19 +32,19 @@ public class IndexSurvlet extends HttpServlet {
 				url,//データベース
 				user,//ユーザー
 				pass//パスワード
-		};
+		};*/
 	/*String[] connInfo = new String[]{
 			"org.h2.Driver",	//ドライバー
 			"jdbc:h2:tcp://localhost/~/mobajpbbs",//データベース
 			"sa",//ユーザー
 			"ghui56"//パスワード
 	};*/
-	/*String[] connInfo = new String[]{
+	String[] connInfo = new String[]{
 			"org.h2.Driver",	//ドライバー
 			"jdbc:h2:tcp://localhost/~/test",//データベース
 			"sa",//ユーザー
 			""//パスワード
-	};*/
+	};
 
 
 	protected void doGet(HttpServletRequest request,
