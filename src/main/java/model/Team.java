@@ -25,11 +25,11 @@ public class Team implements Serializable {
 	}
 
 	public Team(ResultSet rs) throws SQLException {
-		this.id = rs.getInt("team.id");
-		this.reader = new User(rs.getInt("account.id"), rs.getString("account.name"));
-		this.name = rs.getString("team.name");
-		this.image = rs.getString("team.image");
-		this.text = rs.getString("team.text");
+		this.id = rs.getInt("id");
+		this.reader = new User(rs.getInt("reader_id"), rs.getString("reader_name"));
+		this.name = rs.getString("name");
+		this.image = rs.getString("image");
+		this.text = rs.getString("text");
 	}
 
 	public void setId(int id) {

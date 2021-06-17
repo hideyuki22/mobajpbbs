@@ -10,6 +10,7 @@ import core.DAOBase;
 import model.Team;
 
 public class TeamDAO extends DAOBase {
+	String SelectColumn =" TEAM.*,ACCOUNT.ID AS READER_ID,ACCOUNT.NAME AS READER_NAME ";
 	public boolean isName(String name) {
 		//空白ならtrue
 		if ("".equals(name)) {
@@ -71,7 +72,7 @@ public class TeamDAO extends DAOBase {
 
 	public Team getTeam(int readerid) {
 		//sql
-		String sql = "SELECT * FROM TEAM,ACCOUNT WHERE "
+		String sql = "SELECT " + SelectColumn + " FROM TEAM,ACCOUNT WHERE "
 				+ "TEAM.READER_ID = ACCOUNT.ID AND TEAM.ID = ? ";
 
 		try {

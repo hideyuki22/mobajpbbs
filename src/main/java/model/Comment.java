@@ -31,11 +31,11 @@ public class Comment implements Serializable {
 	}
 
 	public Comment(ResultSet rs) throws SQLException {
-		this.id = rs.getInt("comment.id");
+		this.id = rs.getInt("comment_id");
 		this.user = new User(rs);
-		this.text = rs.getString("comment.text");
-		this.date = rs.getDate("comment.date");
-		this.time = rs.getTime("comment.time");
+		this.text = rs.getString("comment_text");
+		this.date = rs.getDate("comment_date");
+		this.time = rs.getTime("comment_time");
 	}
 
 	public int getId() {
@@ -115,7 +115,7 @@ public class Comment implements Serializable {
 
 		while (itr.hasNext()) {
 			Comment cm = itr.next();
-			//>>数字を探す
+			//>>������T��
 			String regex = "(>>\\d+)";
 			Pattern p = Pattern.compile(regex);
 			Matcher m = p.matcher(cm.getText());
@@ -136,7 +136,7 @@ public class Comment implements Serializable {
 
 	private static ArrayList<Comment> NextComment(Map<Integer, Comment> commentMap,
 			Iterator<Integer> keyItr,int level) {
-		//最大じゃなかったらレベルをあげる
+		//�ő傶��Ȃ������烌�x����������
 		if (level < 10) {
 			++level;
 		}
@@ -150,7 +150,7 @@ public class Comment implements Serializable {
 				comment.setLevel(level);
 				commentList.add(comment);
 				((Comment) commentMap.get(key)).setFlag(false);
-				//返信リストがないか確認
+				//�ԐM���X�g���Ȃ����m�F
 				if (!((Comment) commentMap.get(key)).getChildList().isEmpty()) {
 					ArrayList<Integer> childList = ((Comment) commentMap.get(key)).getChildList();
 					Iterator<Integer> childKeyItr = childList.iterator();

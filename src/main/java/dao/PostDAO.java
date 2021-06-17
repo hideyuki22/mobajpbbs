@@ -11,9 +11,13 @@ import core.DAOBase;
 import model.Post;
 
 public class PostDAO extends DAOBase {
+	String SelectColumn = " ACCOUNT.*,POST.ID AS POST_ID,CATEGORY.NAME AS CATEGORY_NAME,"
+					+ "POST.TITLE AS POST_TITLE,POST.TEXT AS POST_TEXT,"
+					+ "POST.DATE AS POST_DATE,POST.TIME AS POST_TIME,"
+					+ "TEAM.NAME AS TEAM_NAME ";
 	public Post getPost(int postid) {
 		//sql
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM POST,CATEGORY,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND "
 				+ "POST.CATEGORY_ID = CATEGORY.ID AND POST.ID = ? ";
@@ -101,17 +105,17 @@ public class PostDAO extends DAOBase {
 	}
 
 	public ArrayList<Post> FetchAllPost() {
-		return this.FetchAllPost(0, 18);
+		return this.FetchAllPost(0, 5);
 	}
 
 	public ArrayList<Post> FetchAllPost(int offset) {
-		return this.FetchAllPost(offset, 18);
+		return this.FetchAllPost(offset, 5);
 	}
 
 	public ArrayList<Post> FetchAllPost(int offset, int limit) {
 		int key = offset * limit;
 		//sql
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM POST,CATEGORY,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID "
 				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
@@ -147,7 +151,7 @@ public class PostDAO extends DAOBase {
 
 		int key = offset * limit;
 		//sql
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM POST,CATEGORY,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID AND CATEGORY.ID = ? "
 				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
@@ -182,7 +186,7 @@ public class PostDAO extends DAOBase {
 
 	public ArrayList<Post> FetchAllUserPost(int offset, int limit, int id) {
 		int key = offset * limit;
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM POST,CATEGORY,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID AND "
 				+ "(POST.USER_ID = ? OR POST.ID IN (SELECT POST_ID FROM COMMENT WHERE USER_ID = ?) ) "

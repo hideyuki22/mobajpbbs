@@ -10,9 +10,13 @@ import core.DAOBase;
 import model.Comment;
 
 public class CommentDAO extends DAOBase {
+
+	String SelectColumn = " ACCOUNT.*,COMMENT.ID AS COMMENT_ID,COMMENT.TEXT AS COMMENT_TEXT,"
+			+ "COMMENT.DATA AS COMMENT_DATA,COMMENT.TIME AS COMMENT_TIME,"
+			+ "TEAM.NAME AS TEAM_NAME ";
 	public ArrayList<Comment> FetchAllComment(int postid) {
 		//sql
-		String sql = "SELECT * FROM COMMENT,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM COMMENT,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE COMMENT.USER_ID = ACCOUNT.ID AND COMMENT.POST_ID = ? "
 				+ "ORDER BY COMMENT.ID ASC ";

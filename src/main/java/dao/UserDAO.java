@@ -11,6 +11,7 @@ import core.DAOBase;
 import model.User;
 
 public class UserDAO extends DAOBase {
+	String SelectColumn =" ACCOUNT.*,TEAM.NAME AS TEAM_NAME ";
 	public boolean isUser(int userid) {
 		//sql
 		String sql = "SELECT * FROM ACCOUNT WHERE ID = ?";
@@ -50,8 +51,6 @@ public class UserDAO extends DAOBase {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, loginid);
 				ResultSet rs = pstmt.executeQuery();
-				System.out.println("loginid:"+loginid);
-				System.out.println("rs.next():"+rs.next());
 				if (rs.next()) {
 					return true;
 				}
@@ -103,7 +102,7 @@ public class UserDAO extends DAOBase {
 
 	public User getUser(int userid) {
 		//sql
-		String sql = "SELECT * FROM ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE ACCOUNT.ID = ? ";
 
@@ -161,7 +160,7 @@ public class UserDAO extends DAOBase {
 
 	public User CheckLogin(String loginid, String pass) {
 		//sql
-		String sql = "SELECT * FROM ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE ACCOUNT.LOGIN_ID = ? AND ACCOUNT.PASS = ? ";
 
@@ -169,13 +168,10 @@ public class UserDAO extends DAOBase {
 			Connection con = this.getCon();
 			try {
 				PreparedStatement pstmt = con.prepareStatement(sql);
-				System.out.println("loginid:"+loginid);
-				System.out.println("pass:"+pass);
 				pstmt.setString(1, loginid);
 				//パスワードハッシュ化
 				pstmt.setString(2, this.hash(pass));
 				ResultSet rs = pstmt.executeQuery();
-				System.out.println("rs:"+rs);
 				if (!rs.next()) {
 					return null;
 				}
@@ -197,7 +193,7 @@ public class UserDAO extends DAOBase {
 	public ArrayList<User> getUserList() {
 		ArrayList<User> userList = new ArrayList<>();
 		//sql
-		String sql = "SELECT * FROM ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID ";
 
 		try {
@@ -227,7 +223,7 @@ public class UserDAO extends DAOBase {
 	public ArrayList<User> getTeamUserList(int teamid) {
 		ArrayList<User> userList = new ArrayList<>();
 		//sql
-		String sql = "SELECT * FROM ACCOUNT "
+		String sql = "SELECT " + SelectColumn + " FROM ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID WHERE ACCOUNT.TEAM_ID =  ?";
 
 		try {

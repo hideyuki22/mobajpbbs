@@ -26,13 +26,13 @@ public class Post implements Serializable {
 	}
 
 	public Post(ResultSet rs) throws SQLException {
-		this.id = rs.getInt("post.id");
+		this.id = rs.getInt("post_id");
 		this.user = new User(rs);
-		this.category = rs.getString("category.name");
-		this.title = rs.getString("post.title");
-		this.text = rs.getString("post.text");
-		this.date = rs.getDate("post.date");
-		this.time = rs.getTime("post.time");
+		this.category = rs.getString("category_name");
+		this.title = rs.getString("post_title");
+		this.text = rs.getString("post_text");
+		this.date = rs.getDate("post_date");
+		this.time = rs.getTime("post_time");
 	}
 
 	public User getUser() {

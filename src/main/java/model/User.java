@@ -41,11 +41,12 @@ public class User implements Serializable {
 		this.loginid = rs.getString("login_id");
 		this.name = rs.getString("name");
 		this.text = rs.getString("text");
-		this.roll = rs.getInt("rank_id");
+		this.roll = rs.getInt("roll_id");
+		this.rank = rs.getInt("rank_id");
 		this.mail = rs.getString("mail");
 		this.image = rs.getString("image");
 		this.teamid = rs.getInt("team_id");
-		this.teamName = rs.getString("team.name");
+		this.teamName = rs.getString("team_name");
 	}
 
 	public int getId() {
