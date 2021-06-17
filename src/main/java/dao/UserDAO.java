@@ -169,10 +169,13 @@ public class UserDAO extends DAOBase {
 			Connection con = this.getCon();
 			try {
 				PreparedStatement pstmt = con.prepareStatement(sql);
+				System.out.println("loginid:"+loginid);
+				System.out.println("pass:"+pass);
 				pstmt.setString(1, loginid);
 				//パスワードハッシュ化
 				pstmt.setString(2, this.hash(pass));
 				ResultSet rs = pstmt.executeQuery();
+				System.out.println("rs:"+rs);
 				if (!rs.next()) {
 					return null;
 				}
