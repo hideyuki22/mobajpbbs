@@ -32,6 +32,8 @@ public class ApplicationCore {
 		//データベース情報を入れる
 		DAOBase.setConnInfo(connInfo);
 		String pathInfo = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		pathInfo = pathInfo.substring(contextPath.length());
 		System.out.println("URI:" + pathInfo);
 		// URLを/ごとに区切る
 		ArrayList<String> param = new ArrayList<>(Arrays.asList(pathInfo.split("/")));
@@ -44,18 +46,18 @@ public class ApplicationCore {
 		//1文字目だけ大文字
 		String fm = "%1S%s";
 		//2以上ならコントローラー名にする
-		if (paramSize > 2) {
+		if (paramSize > 1) {
 			controllerName = "controller."
-					+ String.format(fm, ((String) param.get(2)).substring(0, 1), ((String) param.get(2)).substring(1))
+					+ String.format(fm, ((String) param.get(1)).substring(0, 1), ((String) param.get(1)).substring(1))
 					+ "Controller";
 		}
 		//3以上ならコントローラー名にする
-		if (paramSize > 3) {
-			actionName = String.format(fm, ((String) param.get(3)).substring(0, 1),
-					((String) param.get(3)).substring(1)) + "Action";
+		if (paramSize > 2) {
+			actionName = String.format(fm, ((String) param.get(2)).substring(0, 1),
+					((String) param.get(2)).substring(1)) + "Action";
 		}
 		//4以上ならキーと値に設定してvaluesに入れる
-		for (int i = 4; i + 1 < paramSize; i += 2) {
+		for (int i = 3; i + 1 < paramSize; i += 2) {
 			this.values.put((String) param.get(i), (String) param.get(i + 1));
 		}
 

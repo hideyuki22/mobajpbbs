@@ -103,7 +103,7 @@ public class UserDAO extends DAOBase {
 		//sql
 		String sql = "SELECT * FROM ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
-				+ "WHERE USER.ID = ? ";
+				+ "WHERE ACCOUNT.ID = ? ";
 
 		try {
 			Connection con = this.getCon();
