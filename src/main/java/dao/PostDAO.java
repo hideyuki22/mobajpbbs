@@ -13,9 +13,9 @@ import model.Post;
 public class PostDAO extends DAOBase {
 	public Post getPost(int postid) {
 		//sql
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT AS USER "
-				+ "LEFT JOIN TEAM ON USER.TEAM_ID = TEAM.ID "
-				+ "WHERE POST.USER_ID = USER.ID AND "
+		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
+				+ "WHERE POST.USER_ID = ACCOUNT.ID AND "
 				+ "POST.CATEGORY_ID = CATEGORY.ID AND POST.ID = ? ";
 
 		try {
@@ -101,19 +101,19 @@ public class PostDAO extends DAOBase {
 	}
 
 	public ArrayList<Post> FetchAllPost() {
-		return this.FetchAllPost(0, 5);
+		return this.FetchAllPost(0, 18);
 	}
 
 	public ArrayList<Post> FetchAllPost(int offset) {
-		return this.FetchAllPost(offset, 5);
+		return this.FetchAllPost(offset, 18);
 	}
 
 	public ArrayList<Post> FetchAllPost(int offset, int limit) {
 		int key = offset * limit;
 		//sql
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT AS USER "
-				+ "LEFT JOIN TEAM ON USER.TEAM_ID = TEAM.ID "
-				+ "WHERE POST.USER_ID = USER.ID AND POST.CATEGORY_ID = CATEGORY.ID "
+		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
+				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID "
 				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
 		ArrayList<Post> postList = new ArrayList<>();
 
@@ -147,9 +147,9 @@ public class PostDAO extends DAOBase {
 
 		int key = offset * limit;
 		//sql
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT AS USER "
-				+ "LEFT JOIN TEAM ON USER.TEAM_ID = TEAM.ID "
-				+ "WHERE POST.USER_ID = USER.ID AND POST.CATEGORY_ID = CATEGORY.ID AND CATEGORY.ID = ? "
+		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
+				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID AND CATEGORY.ID = ? "
 				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
 		ArrayList<Post> postList = new ArrayList<>();
 
@@ -182,9 +182,9 @@ public class PostDAO extends DAOBase {
 
 	public ArrayList<Post> FetchAllUserPost(int offset, int limit, int id) {
 		int key = offset * limit;
-		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT AS USER "
-				+ "LEFT JOIN TEAM ON USER.TEAM_ID = TEAM.ID "
-				+ "WHERE POST.USER_ID = USER.ID AND POST.CATEGORY_ID = CATEGORY.ID AND "
+		String sql = "SELECT * FROM POST,CATEGORY,ACCOUNT "
+				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
+				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID AND "
 				+ "(POST.USER_ID = ? OR POST.ID IN (SELECT POST_ID FROM COMMENT WHERE USER_ID = ?) ) "
 				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
 		ArrayList<Post> postList = new ArrayList<>();

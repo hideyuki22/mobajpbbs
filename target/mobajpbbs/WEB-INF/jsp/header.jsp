@@ -27,10 +27,6 @@
 								</c:otherwise>
 							</c:choose>
 						</li>
-						<c:if test="${loginUser.id == 1 }" >
-							<li><a href="<c:out value="${url}" />/user/management" >管理ページへ</a></li>
-						</c:if>
-
 					</ul>
 				<li><input type="submit" name="logout" value="ログアウト" class="button"><input type="hidden" name="indexLoginToken" value="<c:out value="${indexLoginToken}" />" ></li>
 			</ul>
