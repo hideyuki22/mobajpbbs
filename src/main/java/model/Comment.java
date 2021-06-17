@@ -115,7 +115,7 @@ public class Comment implements Serializable {
 
 		while (itr.hasNext()) {
 			Comment cm = itr.next();
-			//>>”š‚ğ’T‚·
+			//>>æ•°å­—ã‚’æ¢ã™
 			String regex = "(>>\\d+)";
 			Pattern p = Pattern.compile(regex);
 			Matcher m = p.matcher(cm.getText());
@@ -136,7 +136,7 @@ public class Comment implements Serializable {
 
 	private static ArrayList<Comment> NextComment(Map<Integer, Comment> commentMap,
 			Iterator<Integer> keyItr,int level) {
-		//Å‘å‚¶‚á‚È‚©‚Á‚½‚çƒŒƒxƒ‹‚ğ‚ ‚°‚é
+		//æœ€å¤§ã˜ã‚ƒãªã‹ã£ãŸã‚‰ãƒ¬ãƒ™ãƒ«ã‚’ã‚ã’ã‚‹
 		if (level < 10) {
 			++level;
 		}
@@ -150,7 +150,7 @@ public class Comment implements Serializable {
 				comment.setLevel(level);
 				commentList.add(comment);
 				((Comment) commentMap.get(key)).setFlag(false);
-				//•ÔMƒŠƒXƒg‚ª‚È‚¢‚©Šm”F
+				//è¿”ä¿¡ãƒªã‚¹ãƒˆãŒãªã„ã‹ç¢ºèª
 				if (!((Comment) commentMap.get(key)).getChildList().isEmpty()) {
 					ArrayList<Integer> childList = ((Comment) commentMap.get(key)).getChildList();
 					Iterator<Integer> childKeyItr = childList.iterator();
