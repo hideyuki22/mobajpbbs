@@ -37,7 +37,7 @@ public class User implements Serializable {
 	}
 
 	public User(ResultSet rs) throws SQLException {
-		this.id = rs.getInt("account.id");
+		this.id = rs.getInt("id");
 		this.loginid = rs.getString("account.login_id");
 		this.name = rs.getString("account.name");
 		this.text = rs.getString("account.text");
