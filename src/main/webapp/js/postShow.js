@@ -24,8 +24,8 @@ window.addEventListener('load',function(){
 $(function(){
 		let textarea = document.getElementById("text");
 	$(".comment-text").each(function(){
-		let text = $(this).text();
-		let regex = /(>>\d+)/g;
+		let text = $(this).html();
+		let regex = /(&gt;&gt;\d+)/g;
 
 		$(this).html(text.replace(regex,"<span class=\"blue\">$1</span>"));
 	});

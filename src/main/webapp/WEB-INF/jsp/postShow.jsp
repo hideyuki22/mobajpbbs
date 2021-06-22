@@ -35,7 +35,9 @@
 						</a>
 					</div>
 					<div class="post-text">
-							<c:out value="${post.text}"/>
+							<c:forEach var="text" items="${post.getSplitText()}">
+								<c:out value="${text}"/><br>
+							</c:forEach>
 					</div>
 			</div><!-- post -->
 		</div><!-- item -->
