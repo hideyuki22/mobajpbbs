@@ -19,7 +19,7 @@
 	<article>
 		<div class="item-post">
 			<div class="user">
-				<div class="user-image"><img src="<c:out value="${url}" />/upload/<c:out value="${post.user.image}" />" ></div>
+				<div class="user-image"><img src="<c:out value="${post.user.image}" />" ></div>
 				<div class="user-name">
 					<a href="<c:out value="${url}" />/user/profile/id/<c:out value="${post.user.id}" /> ">
 						<c:out value="${post.user.name}" />
@@ -55,7 +55,7 @@
 						<td class="reply">▼返信</td>
 					</tr>
 					<tr>
-						<td><img src="<c:out value="${url}" />/upload/<c:out value="${cm.user.image}" />" ></td>
+						<td><img src="<c:out value="${cm.user.image}" />" ></td>
 						<td colspan="4" class="comment-text">
 							<c:forEach var="text" items="${cm.getSplitText()}">
 								<c:out value="${text}"/><br>

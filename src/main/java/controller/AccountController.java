@@ -199,6 +199,7 @@ public class AccountController extends ControllerBase {
 	}
 
 	public void UploadAction() throws Exception {
+
 		//ログインしてなかったらトップページへ
 		if (!this.login.checkLogin()) {
 			this.response.sendRedirect(this.getBaseUrl());
@@ -225,10 +226,10 @@ public class AccountController extends ControllerBase {
 
 			}
 			//ファイルが最大サイズを超えていたら
-			if (part.getSize() > (long) maxSize) {
+			if (part.getSize() > maxSize) {
 				throw new Exception();
 			}
-		} catch (Exception var11) {
+		} catch (Exception e) {
 			errors.put("image", "ファイルのサイズは1MB以下です。");
 			this.request.setAttribute("errors", errors);
 			this.MypageAction();
@@ -254,24 +255,30 @@ public class AccountController extends ControllerBase {
 			String filename = ImageFile.GenerateFileName(loginUser.getId(), uploadname);
 			String path = this.application.getRealPath("/upload") + File.separator + filename;
 			part.write(path);
+
 			//画像かチェック
 			if (!ImageFile.CheckImage(path)) {
 				ImageFile.DeleteImage(path);
 				throw new Exception("アップロードされたファイルは画像ではありません。");
 			}
+			//画像のアップロード
+			File file = new File(path);
+			ImageFile.UploadFile(file);
+			//pathの方の画像削除
+			ImageFile.DeleteImage(path);
 			//データベース更新
-			if (!userDAO.UpdateString("image", filename, loginUser.getId())) {
-				ImageFile.DeleteImage(path);
+			if (!userDAO.UpdateString("image", this.getImageBaseUrl()+filename, loginUser.getId())) {
+				ImageFile.DeleteImageFile(filename);
 				throw new Exception("データベース更新に失敗しました");
 			}
-			//デフォルト画像ではなかったら削除する
+			//デフォルト画像ではなかったらS3の画像を削除する
 			if (!loginUser.getImage().equals(loginUser.getDefaultImage())) {
-				String deletePath = this.application.getRealPath("/upload") + File.separator
-						+ loginUser.getImage();
-				ImageFile.DeleteImage(deletePath);
+				String[] parts = loginUser.getImage().split("/");
+				String DeleteFileName = parts[parts.length-1];
+				ImageFile.DeleteImageFile(DeleteFileName);
 			}
 			//ログインユーザー情報を更新してセッションに登録
-			loginUser.setImage(filename);
+			loginUser.setImage(getImageBaseUrl() + filename);
 			this.session.setAttribute("loginUser", loginUser);
 		} catch (Exception e) {
 			//エラーメッセージを登録してMypageActoinへ

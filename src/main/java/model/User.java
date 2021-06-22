@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class User implements Serializable {
+	private static String defaultImageUrl;
 	private int id;
 	private String loginid;
 	private String name;
@@ -13,7 +14,7 @@ public class User implements Serializable {
 	private int roll;
 	private String mail;
 	private String image;
-	private final String defaultImage = "default.jpg";
+	private final String defaultImage = defaultImageUrl +"/upload/default.jpg";
 	private int teamid;
 	private String teamName;
 
@@ -47,6 +48,14 @@ public class User implements Serializable {
 		this.image = rs.getString("image");
 		this.teamid = rs.getInt("team_id");
 		this.teamName = rs.getString("team_name");
+	}
+
+	public static String getDefaultImageUrl() {
+		return defaultImageUrl;
+	}
+
+	public static void setDefaultImageUrl(String defaultImageUrl) {
+		User.defaultImageUrl = defaultImageUrl;
 	}
 
 	public int getId() {

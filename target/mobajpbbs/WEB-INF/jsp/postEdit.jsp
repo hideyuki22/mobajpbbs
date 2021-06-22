@@ -63,7 +63,7 @@
 									<td><c:out value="${cm.date}" /> <c:out value="${cm.time}" /></td>
 								</tr>
 								<tr>
-									<td><img src="<c:out value="${url}" />/upload/<c:out value="${cm.user.image}" />" ></td>
+									<td><img src="<c:out value="${cm.user.image}" />" ></td>
 									<td colspan="3">
 										<c:forEach var="text" items="${cm.getSplitText()}">
 											<c:out value="${text}"/><br>

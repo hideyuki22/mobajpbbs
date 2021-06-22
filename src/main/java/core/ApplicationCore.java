@@ -15,6 +15,7 @@ public class ApplicationCore {
 	private HttpServletResponse response;
 	private Map<String, String> values = new HashMap<>();
 	private ServletContext application;
+	private Map<String,String> AWSMap;
 
 	public ServletContext getApplication() {
 		return this.application;
@@ -25,10 +26,11 @@ public class ApplicationCore {
 	}
 
 	public ApplicationCore(HttpServletRequest request, HttpServletResponse response, String[] connInfo,
-			ServletContext application) {
+			Map<String,String> AWSMap,ServletContext application) {
 		this.request = request;
 		this.response = response;
 		this.application = application;
+		this.AWSMap = AWSMap;
 		//データベース情報を入れる
 		DAOBase.setConnInfo(connInfo);
 		String pathInfo = request.getRequestURI();
@@ -103,4 +105,13 @@ public class ApplicationCore {
 	public void setResponse(HttpServletResponse response) {
 		this.response = response;
 	}
+
+	public Map<String, String> getAWSMap() {
+		return AWSMap;
+	}
+
+	public void setAWSMap(Map<String, String> aWSMap) {
+		AWSMap = aWSMap;
+	}
+
 }

@@ -24,7 +24,7 @@
 					<table class="imagetable">
 						<tr>
 							<td rowspan="2">
-								<img src="<c:out value="${url}" />/upload/<c:out value="${user.image}" />" id="image">
+								<img src="<c:out value="${user.image}" />" id="image">
 								<input type="hidden" name="accountMypageToken" value="<c:out value="${accountMypageToken}" />">
 							</td>
 							<td><input type="file" id="upload" name="upload" value=""/></td>

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Team;
+import model.User;
+
 public abstract class ControllerBase {
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
@@ -17,6 +20,7 @@ public abstract class ControllerBase {
 	protected ServletContext application;
 	protected RequestDispatcher dispatcher;
 	protected CsrfToken csrfToken;
+	protected Map<String,String> AWSMap;
 
 	public ControllerBase(ApplicationCore appCore) {
 		//値を入れる
@@ -32,6 +36,17 @@ public abstract class ControllerBase {
 		this.request.setAttribute("url", this.getBaseUrl());
 		//セッションからcsrfトークンを入れる
 		this.csrfToken = new CsrfToken(this.session);
+		//AWSデータがあればセットする
+		this.AWSMap = appCore.getAWSMap();
+		ImageFile.setAWS_REGION(AWSMap.containsKey("AWS_REGION") ? AWSMap.get("AWS_REGION"):null);
+		ImageFile.setAWS_ACCESS_KEY_ID(AWSMap.containsKey("AWS_ACCESS_KEY_ID") ? AWSMap.get("AWS_ACCESS_KEY_ID"):null);
+		ImageFile.setAWS_SECRET_ACCESS_KEY(AWSMap.containsKey("AWS_SECRET_ACCESS_KEY") ? AWSMap.get("AWS_SECRET_ACCESS_KEY"):null);
+		ImageFile.setAWS_BACKET_NAME(AWSMap.containsKey("AWS_BACKET_NAME") ? AWSMap.get("AWS_BACKET_NAME"):null);
+		//UserとTeamのデフォル画像URL設定
+		User.setDefaultImageUrl(getBaseUrl());
+		Team.setDefaultImageUrl(getBaseUrl());
+
+
 	}
 
 	public void forward(String url) throws Exception {
@@ -67,6 +82,9 @@ public abstract class ControllerBase {
 	public String getBaseUrl() {
 		return "http://" + this.request.getServerName() + ":" + this.request.getServerPort()
 				+ this.request.getContextPath();
+	}
+	public String getImageBaseUrl() {
+		return "https://" + ImageFile.getAWS_BACKET_NAME() + ".s3." + ImageFile.getAWS_REGION() + ".amazonaws.com/";
 	}
 
 	public HttpServletRequest getRequest() {

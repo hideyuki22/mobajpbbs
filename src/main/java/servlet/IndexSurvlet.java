@@ -1,5 +1,7 @@
 package servlet;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -32,18 +34,19 @@ public class IndexSurvlet extends HttpServlet {
 				user,//ユーザー
 				pass//パスワード
 		};
-	/*String[] connInfo = new String[]{
-			"org.h2.Driver",	//ドライバー
-			"jdbc:h2:tcp://localhost/~/mobajpbbs",//データベース
-			"sa",//ユーザー
-			"ghui56"//パスワード
-	};*/
+
 	/*String[] connInfo = new String[]{
 			"org.h2.Driver",	//ドライバー
 			"jdbc:h2:tcp://localhost/~/test",//データベース
 			"sa",//ユーザー
 			""//パスワード
 	};*/
+		/*String[] connInfo = new String[]{
+				"org.postgresql.Driver",	//ドライバー
+				"jdbc:postgresql://localhost:5432/postgres",//データベース
+				"postgres",//ユーザー
+				"123456"//パスワード
+		};*/
 
 
 	protected void doGet(HttpServletRequest request,
@@ -51,7 +54,12 @@ public class IndexSurvlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		new ApplicationCore(request, response, this.connInfo, this.getServletContext());
+		Map<String,String> AWSMap= new HashMap<>();
+		AWSMap.put("AWS_REGION",System.getenv("AWS_REGION"));
+		AWSMap.put("AWS_ACCESS_KEY_ID",System.getenv("AWS_ACCESS_KEY_ID"));
+		AWSMap.put("AWS_SECRET_ACCESS_KEY",System.getenv("AWS_SECRET_ACCESS_KEY"));
+		AWSMap.put("AWS_BACKET_NAME","mobajpbbs");
+		new ApplicationCore(request, response, this.connInfo,AWSMap, this.getServletContext());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -202,9 +202,9 @@ public class TeamController extends ControllerBase {
 			if (userList.size() == 1) {
 				//チーム画像がデフォルじゃなかったら削除
 				if (!team.getImage().equals(team.getDefaultImage())) {
-					String deletePath = this.application.getRealPath("/upload") + File.separator
-							+ team.getImage();
-					ImageFile.DeleteImage(deletePath);
+					String[] parts = team.getImage().split("/");
+					String DeleteFileName = parts[parts.length-1];
+					ImageFile.DeleteImageFile(DeleteFileName);
 				}
 
 				teamDAO.DeleteTeam(team.getId());
@@ -251,7 +251,7 @@ public class TeamController extends ControllerBase {
 			if (part.getSize() > (long) maxSize) {
 				throw new Exception();
 			}
-		} catch (Exception var11) {
+		} catch (Exception e) {
 			errors.put("image", "ファイルのサイズは1MB以下です。");
 			this.request.setAttribute("errors", errors);
 			this.EditAction();
@@ -281,19 +281,23 @@ public class TeamController extends ControllerBase {
 				ImageFile.DeleteImage(path);
 				throw new Exception("アップロードされたファイルは画像ではありません。");
 			}
+			//画像のアップロード
+			File file = new File(path);
+			ImageFile.UploadFile(file);
+			//pathの方の画像削除
+			ImageFile.DeleteImage(path);
 			//データベース更新
 			TeamDAO teamDAO = new TeamDAO();
 			Team team = teamDAO.getTeam(loginUser.getTeamid());
 			if (!teamDAO.UpdateString("image", filename, loginUser.getTeamid())) {
-				ImageFile.DeleteImage(path);
+				ImageFile.DeleteImageFile(filename);
 				throw new Exception("データベース更新に失敗しました");
 			}
 			//デフォルト画像ではなかったら削除する
 			if (!team.getImage().equals(team.getDefaultImage())) {
-				String deletePath = this.application.getRealPath("/upload")
-						+ File.separator
-						+ team.getImage();
-				ImageFile.DeleteImage(deletePath);
+				String[] parts = team.getImage().split("/");
+				String DeleteFileName = parts[parts.length-1];
+				ImageFile.DeleteImageFile(DeleteFileName);
 			}
 		} catch (Exception e) {
 			//エラーメッセージを登録してEditActionへ
@@ -399,6 +403,11 @@ public class TeamController extends ControllerBase {
 					ImageFile.DeleteImage(path);
 					throw new Exception("アップロードされたファイルは画像ではありません。");
 				}
+				//画像のアップロード
+				File file = new File(path);
+				ImageFile.UploadFile(file);
+				//pathの方の画像削除
+				ImageFile.DeleteImage(path);
 			} catch (Exception e) {
 				errors.put("image", e.getMessage());
 			}

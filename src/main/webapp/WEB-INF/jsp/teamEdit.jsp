@@ -20,7 +20,7 @@
 <article>
 	<div class="team">
 		<div class="teamimage">
-			<img src="<c:out value="${url}" />/upload/<c:out value="${team.image}" />" id="image">
+			<img src="<c:out value="${team.image}" />" id="image">
 		</div>
 		<form action ="<c:out value="${url}" />/team/upload"method="post" enctype="multipart/form-data">
 			<input type="hidden" name="teamEditToken" value="<c:out value="${teamEditToken}" />" >
@@ -70,7 +70,7 @@
 					<input type="hidden" name="teamEditToken" value="<c:out value="${teamEditToken}" />" >
 					<div>
 						<a href="<c:out value="${url}" />/user/profile/id/<c:out value="${user.id}" /> ">
-						<img src="<c:out value="${url}" />/upload/<c:out value="${user.image}" />" >
+						<img src="<c:out value="${user.image}" />" >
 							<c:out value="${user.name}" />
 						</a>
 						<c:if test="${loginUser.id == team.reader.id  && user.id != loginUser.id}">
