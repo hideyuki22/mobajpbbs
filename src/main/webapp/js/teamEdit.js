@@ -29,7 +29,7 @@ window.addEventListener('load',function(){
 			}else{
 			// ファイルのブラウザ上でのURLを取得する
 		    let blobUrl = window.URL.createObjectURL(file);
-			alert("アップロード");
+
 		    image.src = blobUrl;
 			msgimg.innerHTML = "";
 			}

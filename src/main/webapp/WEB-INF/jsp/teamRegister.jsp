@@ -25,7 +25,7 @@
 				<td id="msgname" class="red"><c:out value="${errors.name}" /></td>
 			</tr>
 			<tr>
-				<td><img src="<c:out value="${url}" />/upload/default.jpg" id="image"></td>
+				<td><img src="<c:out value="${url}" />/upload/teamdefault.jpg" id="image"></td>
 				<td colspan="2"><input type="file" id="upload" name="upload"/></td>
 				<td id="msgimg" class="red"><c:out value="${errors.image}" /></td>
 			<tr>

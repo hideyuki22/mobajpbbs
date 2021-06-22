@@ -289,7 +289,7 @@ public class TeamController extends ControllerBase {
 			//データベース更新
 			TeamDAO teamDAO = new TeamDAO();
 			Team team = teamDAO.getTeam(loginUser.getTeamid());
-			if (!teamDAO.UpdateString("image", filename, loginUser.getTeamid())) {
+			if (!teamDAO.UpdateString("image", this.getImageBaseUrl()+filename, loginUser.getTeamid())) {
 				ImageFile.DeleteImageFile(filename);
 				throw new Exception("データベース更新に失敗しました");
 			}
@@ -418,7 +418,7 @@ public class TeamController extends ControllerBase {
 			teamMap.put("userid", String.valueOf(loginUser.getId()));
 			teamMap.put("name", name);
 			teamMap.put("text", text);
-			teamMap.put("image", filename);
+			teamMap.put("image",!"".equals(filename) ? this.getImageBaseUrl()+filename : "");
 			//ログイン情報更新
 			if (teamDAO.InsertTeam(teamMap)) {
 				UserDAO userDAO = new UserDAO();
