@@ -58,7 +58,7 @@
 			<div class="item">
 				<div class="item-post">
 					<div class="user" data-url="<c:out value="${url}" />/user/profile/id/<c:out value="${post.user.id}" /> ">
-						<div class="user-image"><img src="<c:out value="${url}" />/upload/<c:out value="${post.user.image}" />" ></div>
+						<div class="user-image"><img src="<c:out value="${post.user.image}" />" ></div>
 						<div class="user-name">
 							<a href="<c:out value="${url}" />/user/profile/id/<c:out value="${post.user.id}" /> ">
 								<c:out value="${post.user.name}" />

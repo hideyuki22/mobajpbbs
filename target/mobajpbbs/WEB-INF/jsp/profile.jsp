@@ -18,7 +18,7 @@
 <main>
 	<aside>
 		<div class="profile">
-			<div class="profileimage"><img src="<c:out value="${url}" />/upload/<c:out value="${user.image}" />" ></div>
+			<div class="profileimage"><img src="<c:out value="${user.image}" />" ></div>
 			<div class="profilename"><c:out value="${user.name}" /></div>
 			<div>チーム:
 				<c:if test="${user.teamid > 0 }">
@@ -75,7 +75,7 @@
 			<c:forEach var="post" items="${postList}">
 					<div class="item-post">
 						<div class="user" data-url="<c:out value="${url}" />/user/profile/id/<c:out value="${post.user.id}" /> ">
-							<div class="user-image"><img src="<c:out value="${url}" />/upload/<c:out value="${post.user.image}" />" ></div>
+							<div class="user-image"><img src="<c:out value="${post.user.image}" />" ></div>
 							<div class="user-name">
 								<a href="<c:out value="${url}" />/user/profile/id/<c:out value="${post.user.id}" /> ">
 									<c:out value="${post.user.name}" />

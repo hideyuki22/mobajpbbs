@@ -20,7 +20,7 @@
 	<article>
 		<div class="team">
 			<div class="teamimage">
-				<img src="<c:out value="${url}" />/upload/<c:out value="${team.image}" />">
+				<img src="<c:out value="${team.image}" />">
 			</div>
 			<div><c:out value="${team.name}" /></div>
 			<div>
@@ -46,7 +46,7 @@
 			<c:forEach var="user" items="${userList}">
 				<div class="menber" data-url="<c:out value="${url}" />/user/profile/id/<c:out value="${post.user.id}" /> ">
 					<div class="menberimage">
-						<img src="<c:out value="${url}" />/upload/<c:out value="${user.image}" />" >
+						<img src="<c:out value="${user.image}" />" >
 					</div>
 					<div class="menbername">
 						<a href="<c:out value="${url}" />/user/profile/id/<c:out value="${user.id}" /> ">
