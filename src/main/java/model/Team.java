@@ -62,7 +62,7 @@ public class Team implements Serializable {
 	}
 
 	public String getImage() {
-		return !"".equals(this.image) && this.image != null ? this.image : "defaultteam.jpg";
+		return !"".equals(this.image) && this.image != null ? this.image : this.defaultImage;
 	}
 
 	public void setImage(String image) {
