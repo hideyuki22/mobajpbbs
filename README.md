@@ -3,7 +3,7 @@
 https://mobajpbbs.herokuapp.com/
 ### 作成目的
 League of Legendstというタイトルのゲームをしてるのですが掲示板がないので
-ツリー機能付き掲示板を作成しました。
+学習目的も兼ねてツリー機能付き掲示板を作成しました。
 ### 使用技術 
 - JAVA8
 - JSTL1.2
