@@ -414,13 +414,13 @@ public class TeamController extends ControllerBase {
 		}
 		//エラーがなかったらSQL更新
 		if (errors.isEmpty()) {
-			Map<String, String> teamMap = new HashMap<>();
-			teamMap.put("userid", String.valueOf(loginUser.getId()));
-			teamMap.put("name", name);
-			teamMap.put("text", text);
-			teamMap.put("image",!"".equals(filename) ? this.getImageBaseUrl()+filename : "");
+			Team team = new Team();
+			team.setName(name);
+			team.setText(text);
+			team.setImage(filename);
+
 			//ログイン情報更新
-			if (teamDAO.InsertTeam(teamMap)) {
+			if (teamDAO.InsertTeam(team,loginUser.getId())) {
 				UserDAO userDAO = new UserDAO();
 				loginUser = userDAO.getUser(loginUser.getId());
 				this.session.setAttribute("loginUser", loginUser);

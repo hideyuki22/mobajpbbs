@@ -13,8 +13,8 @@ public class Team implements Serializable {
 	private final String defaultImage =  defaultImageUrl +"/upload/defaultteam.jpg";
 	private String text;
 
-	public int getId() {
-		return this.id;
+	public Team() {
+
 	}
 
 	public Team(int id, User reader, String name, String image, String text) {
@@ -44,7 +44,9 @@ public class Team implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	public int getId() {
+		return this.id;
+	}
 	public User getReader() {
 		return this.reader;
 	}

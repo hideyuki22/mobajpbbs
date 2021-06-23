@@ -18,6 +18,9 @@ public class User implements Serializable {
 	private int teamid;
 	private String teamName;
 
+	public User() {
+
+	}
 	public User(int userid, String name) {
 		this.id = userid;
 		this.name = name;

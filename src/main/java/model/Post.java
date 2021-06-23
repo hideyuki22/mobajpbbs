@@ -15,6 +15,9 @@ public class Post implements Serializable {
 	private Date date;
 	private Time time;
 
+	public Post() {
+
+	}
 	public Post(int id, User user, String category, String title, String text, Date date, Time time) {
 		this.id = id;
 		this.user = user;

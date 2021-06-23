@@ -147,8 +147,8 @@ public class PostController extends ControllerBase {
 			errors.put("submit", "ログイン状態が不正です。");
 		}
 
-		String userid = Integer.toString(loginUser.getId());
-		String categoryid = this.request.getParameter("category");
+		int userid =loginUser.getId();
+		int categoryid = Integer.valueOf(request.getParameter("category"));
 		String title = this.request.getParameter("title");
 		String text = this.request.getParameter("text");
 		//タイトルチェック
@@ -179,14 +179,14 @@ public class PostController extends ControllerBase {
 
 		//エラーがなかったら登録
 		if (errors.isEmpty()) {
-			Map<String, String> post = new HashMap<>();
-			post.put("userid", userid);
-			post.put("categoryid", categoryid);
-			post.put("title", title);
-			post.put("text", text);
+			Post post = new Post();
+
+			post.setTitle(title);
+			post.setText(text);
+
 			PostDAO postDAO = new PostDAO();
 			//トップページへ
-			if (postDAO.InsertPost(post)) {
+			if (postDAO.InsertPost(post,userid,categoryid)) {
 				this.response.sendRedirect(this.getBaseUrl());
 				return;
 			}
@@ -194,7 +194,7 @@ public class PostController extends ControllerBase {
 		//エラーとフォームの値を登録してNewAcitionへ
 		errors.put("submit", "投稿に失敗しました");
 		this.request.setAttribute("errors", errors);
-		this.request.setAttribute("categoryid", Integer.parseInt(categoryid));
+		this.request.setAttribute("categoryid", categoryid);
 		this.request.setAttribute("title", title);
 		this.request.setAttribute("text", text);
 		this.NewAction();

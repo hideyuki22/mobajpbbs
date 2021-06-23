@@ -371,13 +371,14 @@ public class AccountController extends ControllerBase {
 		}
 		//エラーがなかったら登録
 		if (errors.isEmpty()) {
-			Map<String, String> userMap = new HashMap<>();
-			userMap.put("loginid", loginid);
-			userMap.put("pass", pass);
-			userMap.put("mail", mail);
-			userMap.put("name", name);
+			User user = new User();
+			user.setLoginid(loginid);
+			user.setName(name);
+			user.setMail(mail);
+
+
 			//成功したらトップページへ
-			if (userDAO.InsertUser(userMap)) {
+			if (userDAO.InsertUser(user,pass)) {
 				this.response.sendRedirect(this.getBaseUrl());
 				return;
 			}

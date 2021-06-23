@@ -62,8 +62,8 @@ public class IndexController extends ControllerBase {
 		if (this.values.containsKey("category")) {
 			nextPage = Integer.parseInt((String) this.values.get("category"));
 			this.request.setAttribute("categoryid", nextPage);
-			postList = postDAO.FetchAllPost(page, 5, nextPage);
-			nextList = postDAO.FetchAllPost(page + 1, 5, nextPage);
+			postList = postDAO.FetchAllPost(page, 12, nextPage);
+			nextList = postDAO.FetchAllPost(page + 1, 12, nextPage);
 		} else {
 			postList = postDAO.FetchAllPost(page);
 			nextList = postDAO.FetchAllPost(page + 1);

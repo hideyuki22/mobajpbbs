@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
 import core.DAOBase;
 import model.Team;
@@ -103,16 +102,11 @@ public class TeamDAO extends DAOBase {
 		return null;
 	}
 
-	public boolean InsertTeam(Map<String, String> teamMap) {
+	public boolean InsertTeam(Team team,int userid) {
 		//マップに値があるか確認
-		if (teamMap.containsKey("userid") && teamMap.containsKey("name") && teamMap.containsKey("text")
-				&& teamMap.containsKey("image")) {
-			int userid = Integer.valueOf(teamMap.get("userid"));
-			String name = teamMap.get("name");
-			String text = teamMap.get("text");
-			String image = teamMap.get("image");
-			//名前が空白なら失敗
-			if (this.isName(name)) {
+		if (!team.getName().isEmpty() && !team.getText().isEmpty() && !team.getImage().isEmpty()) {
+			//名前が重複してたら
+			if (this.isName(team.getName())) {
 				return false;
 			}
 			//sql
@@ -126,10 +120,10 @@ public class TeamDAO extends DAOBase {
 					con.setAutoCommit(false);
 					PreparedStatement pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, userid);
-					pstmt.setString(2, name);
-					pstmt.setString(3, text);
-					pstmt.setString(4, image);
-					pstmt.setString(5, name);
+					pstmt.setString(2, team.getName());
+					pstmt.setString(3, team.getText());
+					pstmt.setString(4, team.getImage());
+					pstmt.setString(5, team.getName());
 					pstmt.setInt(6, userid);
 					int r = pstmt.executeUpdate();
 					if (r != 0) {

@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import core.DAOBase;
 import model.Post;
@@ -115,10 +114,16 @@ public class PostDAO extends DAOBase {
 	public ArrayList<Post> FetchAllPost(int offset, int limit) {
 		int key = offset * limit;
 		//sql
-		String sql = "SELECT " + SelectColumn + " FROM POST,CATEGORY,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + ",COALESCE(MAX(COMMENT.DATE + COMMENT.TIME),POST.DATE + POST.TIME) AS MAX_DATETIME, "
+				+ "COUNT(COMMENT.ID) AS COUNT_COMMENT "
+				+ "FROM POST LEFT JOIN COMMENT ON POST.ID = COMMENT.POST_ID, "
+				+ "CATEGORY,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID "
-				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
+				+ "GROUP BY POST.ID,ACCOUNT.ID,CATEGORY.ID,TEAM.ID "
+				+ "ORDER BY MAX_DATETIME "
+				+ "DESC LIMIT ? OFFSET ? ";
+
 		ArrayList<Post> postList = new ArrayList<>();
 
 		try {
@@ -151,10 +156,15 @@ public class PostDAO extends DAOBase {
 
 		int key = offset * limit;
 		//sql
-		String sql = "SELECT " + SelectColumn + " FROM POST,CATEGORY,ACCOUNT "
+		String sql = "SELECT " + SelectColumn + ",COALESCE(MAX(COMMENT.DATE + COMMENT.TIME),POST.DATE + POST.TIME) AS MAX_DATETIME, "
+				+ "COUNT(COMMENT.ID) AS COUNT_COMMENT "
+				+ "FROM POST LEFT JOIN COMMENT ON POST.ID = COMMENT.POST_ID, "
+				+ "CATEGORY,ACCOUNT "
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID AND CATEGORY.ID = ? "
-				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
+				+ "GROUP BY POST.ID,ACCOUNT.ID,CATEGORY.ID,TEAM.ID "
+				+ "ORDER BY MAX_DATETIME "
+				+ "DESC LIMIT ? OFFSET ? ";
 		ArrayList<Post> postList = new ArrayList<>();
 
 		try {
@@ -190,7 +200,8 @@ public class PostDAO extends DAOBase {
 				+ "LEFT JOIN TEAM ON ACCOUNT.TEAM_ID = TEAM.ID "
 				+ "WHERE POST.USER_ID = ACCOUNT.ID AND POST.CATEGORY_ID = CATEGORY.ID AND "
 				+ "(POST.USER_ID = ? OR POST.ID IN (SELECT POST_ID FROM COMMENT WHERE USER_ID = ?) ) "
-				+ "ORDER BY POST.ID DESC LIMIT ? OFFSET ? ";
+				+ "ORDER BY POST.DATE,POST.TIME "
+				+ "DESC LIMIT ? OFFSET ? ";
 		ArrayList<Post> postList = new ArrayList<>();
 
 		try {
@@ -220,14 +231,10 @@ public class PostDAO extends DAOBase {
 		return postList;
 	}
 
-	public boolean InsertPost(Map<String, String> post) {
-		System.out.println("test1");
-		if (post.containsKey("userid") && post.containsKey("categoryid") && post.containsKey("title")
-				&& post.containsKey("text")) {
-			int userid = Integer.valueOf(post.get("userid"));
-			int categoryid = Integer.valueOf(post.get("categoryid"));
-			String title = post.get("title");
-			String text = post.get("text");
+	public boolean InsertPost(Post post,int userid,int categoryid) {
+		//値がセットされているか確認
+		if (!post.getTitle().isEmpty() && !post.getText().isEmpty()) {
+
 			//sql
 			String sql = "INSERT INTO POST(USER_ID,CATEGORY_ID,TITLE,TEXT) VALUES(?, ?, ?, ?)";
 			boolean result = false;
@@ -238,11 +245,10 @@ public class PostDAO extends DAOBase {
 				try {
 					con.setAutoCommit(false);
 					PreparedStatement pstmt = con.prepareStatement(sql);
-					System.out.println("test");
 					pstmt.setInt(1, userid);
 					pstmt.setInt(2, categoryid);
-					pstmt.setString(3, title);
-					pstmt.setString(4, text);
+					pstmt.setString(3, post.getTitle());
+					pstmt.setString(4, post.getText());
 					int r = pstmt.executeUpdate();
 					if (r != 0) {
 						result = true;

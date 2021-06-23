@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import core.DAOBase;
 import model.User;
@@ -251,17 +250,15 @@ public class UserDAO extends DAOBase {
 		return userList;
 	}
 
-	public boolean InsertUser(Map<String, String> userMap) {
+	public boolean InsertUser(User user,String pass) {
 		//値があるか確認
-		if (userMap.containsKey("loginid") && userMap.containsKey("pass") && userMap.containsKey("mail")
-				&& userMap.containsKey("name")) {
-			String loginid = (String) userMap.get("loginid");
+		if (!user.getLoginid().isEmpty() &&  !user.getMail().isEmpty()
+				&& !user.getName().isEmpty()) {
+
 			//パスワードのハッシュ化
-			String pass = this.hash((String) userMap.get("pass"));
-			String mail = (String) userMap.get("mail");
-			String name = (String) userMap.get("name");
+			 pass = this.hash(pass);
 			//表示名とログインIDが被ってないか確認
-			if (!this.isLoginid(loginid) && !this.isName(name)) {
+			if (!this.isLoginid(user.getLoginid()) && !this.isName(user.getName())) {
 				String sql = "INSERT INTO ACCOUNT(LOGIN_ID,PASS,MAIL,NAME) VALUES(?, ?, ?, ? )";
 				boolean result = false;
 
@@ -271,10 +268,10 @@ public class UserDAO extends DAOBase {
 					try {
 						con.setAutoCommit(false);
 						PreparedStatement pstmt = con.prepareStatement(sql);
-						pstmt.setString(1, loginid);
+						pstmt.setString(1, user.getLoginid());
 						pstmt.setString(2, pass);
-						pstmt.setString(3, mail);
-						pstmt.setString(4, name);
+						pstmt.setString(3, user.getMail());
+						pstmt.setString(4, user.getName());
 						int r = pstmt.executeUpdate();
 						if (r != 0) {
 							result = true;

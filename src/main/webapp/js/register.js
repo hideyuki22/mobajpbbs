@@ -67,6 +67,8 @@ window.addEventListener('load',function(){
 			msgmail.innerHTML = "メールアドレスは必須項目です。";
 		}else if(mailPattern.test(mail.value) === false){
 			msgmail.innerHTML = "メールアドレスの値が不正です。";
+		}else{
+			msgmail.innerHTML = "";
 		}
 	}
 
