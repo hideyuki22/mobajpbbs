@@ -35,20 +35,6 @@ public class IndexSurvlet extends HttpServlet {
 				pass//パスワード
 		};
 
-	/*String[] connInfo = new String[]{
-			"org.h2.Driver",	//ドライバー
-			"jdbc:h2:tcp://localhost/~/test",//データベース
-			"sa",//ユーザー
-			""//パスワード
-	};*/
-		/*String[] connInfo = new String[]{
-				"org.postgresql.Driver",	//ドライバー
-				"jdbc:postgresql://localhost:5432/postgres",//データベース
-				"postgres",//ユーザー
-				"123456"//パスワード
-		};*/
-
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
